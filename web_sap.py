@@ -22,12 +22,20 @@ for i in range(1,13):
 print(len(c))
 all=pd.DataFrame(c)
 
-print(all[0].value_counts())
-print(all)
+#creating new dataset by 'Company size' and 'Industry' with scraped data from the web
+s=all[0].value_counts()
+ds=dict(s)
+print(ds)
+wanted_keys=['10,000+ ', '1001-5000 ', '5001-10,000 ',\
+'11-50 ', '201-500 ', '51-200 ','501-1000 ','1-10 ']
+size={k: ds[k] for k in set(wanted_keys) & set(ds.keys())}
+print(size)
 
-# %matplotlib inline
-# import matplotlib.pyplot as plt
-
+for i in set(wanted_keys):
+    del(ds[i])
+del(ds[''])
+industry=ds
+#Now, we get the dataset size{}, industry{} that get to know features of SAP's customers
 
 
 
@@ -56,3 +64,5 @@ div > div > div > div.tab_link_right > div.tab_link_right_inner >
 div.testimonials_bg.clearboth.premium_border > div:nth-child(19) > 
 div.testi_box_left.premium_border_right > div.half_width > span
 """
+# %matplotlib inline
+# import matplotlib.pyplot as plt
